@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		{# Run `composer require symfony/webpack-encore-bundle` and uncomment the following Encore helpers to start using Symfony UX #}
+		<!-- Axentix CSS minified version -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.3.3/dist/css/axentix.min.css">
+		{% block stylesheets %}
+		<link rel="stylesheet" href="public/css/style.css">
+			{#{{ encore_entry_link_tags('app') }}#}
+		{% endblock %}
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="stylesheet" href="{{ asset('css/style.css')}}">
+
+	</head>
+
+	<body class="layout with-sidenav fixed-sidenav grey light-4">
+		<header>
+			<nav class="navbar shadow-1 airforce dark-5 ">
+				<a href="{{ path('app_home') }}" class="navbar-brand">Petites annonces</a>
+				<div class="navbar-menu ml-auto">
+				 <a class="navbar-link" href="{{ path('app_home') }}">Accueil</a>
+                <a class="navbar-link" href="{{ path('users') }}">Profil</a>
+                <a class="navbar-link" href="{{ path('contact') }}">Contact</a>
+
+               
+			</nav>
+		</header>
+
+		<div id="example-sidenav" data-ax="sidenav" class="sidenav shadow-1 large fixed blue dark-3 txt-center">
+			<div class="sidenav-header">
+				<button data-target="example-sidenav" class="sidenav-trigger">
+					<i class="fas fa-times"></i>
+				</button>
+				<i class="fas fa-users-cog fa-2x"></i>
+			</div>
+			<a href="{{ path('users') }}" class="sidenav-link ">Modifier mon profil</a>
+			<a href="{{ path('annonces_home') }}" class="sidenav-link">Gerer mes annonces</a>
+			<a href="{{ path('users_annonces_ajout') }}" class="sidenav-link">Ajouter une annonce</a>
+			<a href="{{ path('admin_categories_home') }}" class="sidenav-link">Gerer mes catégories</a>
+		</div>
+
+		<main>
+
+			<button data-target="example-sidenav" class="btn rounded-1 press blue dark-3 sidenav-trigger hide-md-up mt-2">
+				<i class="fas fa-bars"></i>
+			</button>
+			
+			{% block body %}{% endblock %}
+			
+		</main>
+
+		<footer class="footer airforce dark-5">
+			Copyright © 2021 - Example
+		</footer>
+
+		<!-- Axentix JS minified version -->
+		<script src="https://cdn.jsdelivr.net/npm/axentix@1.3.3/dist/js/axentix.min.js"></script>
+		{% block javascripts %}
+			{#{{ encore_entry_script_tags('app') }}#}
+		{% endblock %}
+		<script src="{{ asset('js/script.js') }}"></script>
+
+	</body>
+
+</html>

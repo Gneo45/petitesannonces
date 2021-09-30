@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %} {% block title %}Accueil {% endblock %} {% block stylesheets %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" /> {% endblock %} {% block body %}
+
+<div class="container">
+    <h3>Rechercher une annonce</h3>
+    {{ form(form)}} {% for annonce in annonces %}
+    <div class="card shadow-1 fx-row rounded-2">
+        <div class="primary d-flex vcenter fx-center px-4 grey light-4">
+            <img src="{{ asset(('./uploads/images/annonces/' ~ annonce.images[0].name)|imagine_filter('square')) }}" alt="{{ annonce.title }}">
+
+        </div>
+
+        <div class="flex fx-col fx-grow grey light-4">
+            {#
+            <div class="card-header"><a href="{{ path('annonces_details', {slug: annonce.slug})}}">{{ annonce.title }}</a></div> #}
+            <div class="card-header">
+                <p><u> <a class="txt-blue" href="{{ path('annonces_details', {slug: annonce.slug})}}">{{ annonce.title }}</a> </u></p>
+            </div>
+
+            <div class="card-content ">
+                <p>Catégorie : {{ annonce.categories.name }}</p>
+                <p>
+                    {{ annonce.content|striptags|u.truncate(50, '...') }}
+                </p>
+
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

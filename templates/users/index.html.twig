@@ -1,0 +1,54 @@
+{% extends 'users.html.twig' %}
+
+{% block title %}Profil de
+	{{ app.user.firstname}}
+	{{app.user.name}}
+{% endblock %}
+
+{% block body %}
+	<div class="grix xs4 container">
+		{% for message in app.flashes('message') %}
+			<div class="col-xs4">
+				<div class="p-3 my-2 rounded-2 success">{{message}}</div>
+			</div>
+
+		{% endfor %}
+		<div class="col-xs4 ">
+			<h4 class=" font-s3 txt-black grey dark-4 rounded-3 p-1 pl-3 Shadow-3">Profil de
+				{{ app.user.firstname}}
+				{{app.user.name}}
+			</h4>
+		</div>
+
+		<div class="col-xs1">
+			<strong>Nom :</strong>
+		</div>
+		<div class="col-xs3">{{ app.user.name }}</div>
+		<div class="col-xs1">
+			<strong>Prénom :</strong>
+		</div>
+		<div class="col-xs3">{{ app.user.firstname }}</div>
+		<div class="col-xs1">
+			<strong>Email :</strong>
+		</div>
+		<div class="col-xs3">{{ app.user.email }}</div>
+		<div class="col-xs4">
+			<a href="{{ path('users_profil_modifier')}}" class="btn shadow-3 hoverable-1 rounded-1 small blue dark-3 bd-1 bd-solid bd-black  uppercase mt-3 mr-4">Modifier le profil</a>
+			<a href="{{ path('users_pass_modifier')}}" class="btn shadow-3 hoverable-1 rounded-1 small blue dark-3 bd-1 bd-solid bd-black  uppercase mt-3 mr-4">Modifier le Mot de passe</a>
+		</div>
+
+		<div class="col-xs4">
+			<h4 class=" font-s3 txt-black grey dark-4 rounded-3 p-1 pl-3 Shadow-3">Annonces de
+				{{ app.user.firstname}}
+				{{app.user.name}}
+				({{app.user.annonces|length }})</h4>
+		</div>
+		{% for annonce in app.user.annonces %}
+			<div class="col-xs1">
+				<strong>Titre :</strong>
+			</div>
+			<div class="col-xs3">{{annonce.title}}</div>
+		{% endfor %}
+
+	</div>
+{% endblock %}
